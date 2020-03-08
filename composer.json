@@ -1,5 +1,5 @@
 {
-    "name": "atom/template",
+    "name": "atom/app",
     "description": "Atom Template",
     "keywords": [
         "framework",
@@ -11,11 +11,15 @@
         {
             "type": "path",
             "url": "../Atom"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/edin/Atom.git"
         }
     ],
     "require": {
         "php": "^7.1.0",
-        "atom/framework": "*"
+        "atom/framework": "dev-develop"
     },
     "require-dev": {
         "filp/whoops": "^2.3"

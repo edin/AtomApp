@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8aa233d8d009a18be35b9b67ca9e3eab",
+    "content-hash": "8bed83ad80065cd8cba7d0c94507f9cc",
     "packages": [
         {
             "name": "atom/framework",
-            "version": "dev-dev",
+            "version": "dev-develop",
             "dist": {
                 "type": "path",
                 "url": "../Atom",
@@ -572,7 +572,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "atom/framework": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

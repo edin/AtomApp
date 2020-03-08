@@ -22,7 +22,7 @@ class Routes
         $router->addGroup("/", function (RouteGroup $group) {
             $group->addMiddleware(LogMiddleware::class);
             $group->addRoute("GET", "", "HomeController@index")->withName("home");
-            $group->addRoute("GET", "/item", "HomeController@item");
+            $group->addRoute("GET", "item", "HomeController@item");
             $group->addRoute("GET", "json", "HomeController@json");
             $group->addRoute("GET", "login", "AccountController@login");
             $group->addRoute("GET", "logout", "AccountController@logout");
