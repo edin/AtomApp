@@ -1,0 +1,28 @@
+{
+    "name": "atom/template",
+    "description": "Atom Template",
+    "keywords": [
+        "framework",
+        "Atom"
+    ],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../Atom"
+        }
+    ],
+    "require": {
+        "php": "^7.1.0",
+        "atom/framework": "*"
+    },
+    "require-dev": {
+        "filp/whoops": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
