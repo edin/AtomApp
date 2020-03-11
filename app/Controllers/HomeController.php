@@ -2,37 +2,27 @@
 
 namespace App\Controllers;
 
-use App\Messages\FormPostMessage;
-use App\Models\UserRepository;
+use Atom\Router\Route;
 use Atom\View\ViewInfo;
-use Atom\Container\Container;
-use Psr\Http\Message\ServerRequestInterface;
+use App\Models\UserRepository;
+use App\Messages\FormPostMessage;
 
 final class HomeController
 {
-    private $UserRepository;
-    private $Request;
-    private $Container;
+    private $userRepository;
 
-    public function __construct(
-        UserRepository $userRepository,
-        ServerRequestInterface $request,
-        Container $container
-    ) {
-        $this->UserRepository = $userRepository;
-        $this->Request = $request;
-        $this->Container = $container;
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
     }
 
-    final public function index($id = 0, FormPostMessage $post)
+    final public function index($id = 0, FormPostMessage $post, Route $route)
     {
-        return new ViewInfo(
-            'home/index',
-            [
-                'items' => $this->UserRepository->findAll(),
-                'post' => $post
-            ]
-        );
+        return new ViewInfo('home/index', [
+            'items' => $this->userRepository->findAll(),
+            'post' => $post,
+            'route' => $route
+        ]);
     }
 
     final public function json(UserRepository $repository)

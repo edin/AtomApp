@@ -2,41 +2,37 @@
 
 namespace App;
 
-use App\Controllers\AccountController;
-use App\Controllers\HomeController;
-use App\Middlewares\LogMiddleware;
-use App\Models\UserRepository;
-use Atom\Container\Container;
 use Atom\Router\Router;
+use App\Models\UserRepository;
+use App\Middlewares\LogMiddleware;
+use App\Controllers\HomeController;
+use App\Controllers\AccountController;
+use App\Filters\ActionFilter;
 
 class Routes
 {
-    public function configureServices(Container $container)
-    {
-        $container->UserRepository    = \App\Models\UserRepository::class;
-    }
-
     public function configure(Router $router)
     {
         $router->addGroup("/", function (Router $group) {
             $group->addMiddleware(LogMiddleware::class);
-
-            $group->addRoute("GET", "", HomeController::class, "index")->withName("home");
-            $group->addRoute("GET", "item", HomeController::class, "item");
-            $group->addRoute("GET", "json", HomeController::class, "json");
-            $group->addRoute("GET", "login", AccountController::class, "login");
-            $group->addRoute("GET", "logout", AccountController::class, "logout");
+            $group->get("", HomeController::class, "index")->withName("home");
+            $group->get("item", HomeController::class, "item");
+            $group->get("json", HomeController::class, "json");
+            $group->get("login", AccountController::class, "login");
+            $group->get("logout", AccountController::class, "logout");
+            $group->get("filter", HomeController::class, "index")
+                ->addActionFilter(ActionFilter::class);
         });
 
         $router->addGroup("/api", function (Router $group) {
-            $group->addRoute("GET", "users", HomeController::class, "onGet");
-            $group->addRoute("POST", "users", HomeController::class, "onPost");
-            $group->addRoute("PUT", "users/{id}", HomeController::class, "onPut");
-            $group->addRoute("PATCH", "users", HomeController::class, "onPatch");
-            $group->addRoute("DELETE", "users", HomeController::class, "onDelete");
-            $group->addRoute("OPTIONS", "users", HomeController::class, "onOptions");
+            $group->get("users", HomeController::class, "onGet");
+            $group->post("users", HomeController::class, "onPost");
+            $group->put("users/{id}", HomeController::class, "onPut");
+            $group->patch("users", HomeController::class, "onPatch");
+            $group->delete("users", HomeController::class, "onDelete");
+            $group->options("users", HomeController::class, "onOptions");
 
-            $group->addRoute("GET", "hello", function (UserRepository $users) {
+            $group->get("users-all", function (UserRepository $users) {
                 return $users->findAll();
             });
         });
