@@ -21,11 +21,3 @@
     <?php endforeach; ?>
 </table>
 <?php endif; ?>
-
-<div style="border:1px solid #333;padding:3px">
-<pre><?php print_r($route->getMiddlewares()) ?></pre>
-</div>
-
-<div style="border:1px solid #333;padding:3px">
-<pre><?php print_r($route->getMiddlewares()) ?></pre>
-</div>
