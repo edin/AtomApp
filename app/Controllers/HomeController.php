@@ -41,29 +41,4 @@ final class HomeController
     {
         return $repository->findAll();
     }
-
-    final public function onPost()
-    {
-        return ["result" => "Executed onPost method."];
-    }
-
-    final public function onPut($id = 0)
-    {
-        return ["result" => "Executed onPut method.", "id" => $id];
-    }
-
-    final public function onPatch()
-    {
-        return ["result" => "Executed onPatch method."];
-    }
-
-    final public function onDelete()
-    {
-        return ["result" => "Executed onDelete method."];
-    }
-
-    final public function onOptions()
-    {
-        return ["result" => "Executed onOptions method."];
-    }
 }

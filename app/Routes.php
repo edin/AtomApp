@@ -8,6 +8,7 @@ use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AccountController;
 use App\Controllers\ApiController;
+use App\Controllers\ValidationController;
 use Atom\Router\RouteBuilder;
 
 class Routes
@@ -23,6 +24,8 @@ class Routes
             $group->get("item", "item");
             $group->get("json", "json");
             $group->get("filter", "index");
+            $group->get("validation", ValidationController::class, "index");
+            
             $group->attach(RouteBuilder::fromController(AccountController::class));
         });
 
