@@ -23,7 +23,7 @@ final class ApiController
 
     /**
      * @Post("users")
-     */    
+     */
     final public function onPost()
     {
         return ["result" => "Executed onPost method."];
@@ -31,7 +31,7 @@ final class ApiController
 
     /**
      * @Put("users/{id}")
-     */    
+     */
     final public function onPut(int $id = 0)
     {
         return ["result" => "Executed onPut method.", "id" => $id];
@@ -47,7 +47,7 @@ final class ApiController
 
     /**
      * @Delete("users")
-     */    
+     */
     final public function onDelete()
     {
         return ["result" => "Executed onDelete method."];

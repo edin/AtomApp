@@ -5,14 +5,16 @@ namespace App\Models;
 final class User
 {
     public $id;
-    public $username;
+    public $first_name;
+    public $last_name;
     public $email;
 
-    public static function from($id, $username, $email)
+    public static function from($id, $first_name, $last_name, $email)
     {
         $user = new static();
         $user->id = $id;
-        $user->username = $username;
+        $user->first_name = $first_name;
+        $user->last_name = $last_name;
         $user->email = $email;
         return $user;
     }

@@ -2,21 +2,41 @@
 
 namespace App\Models;
 
+use Atom\Database\Connection;
+use Atom\Database\Query\Compilers\MySqlCompiler;
+use Atom\Database\Query\Criteria;
+use Atom\Database\Query\Operator;
+use Atom\Database\Query\Query;
+
 class UserRepository
 {
     public function findAll()
     {
-        return [
-            User::from(1, "user1", "user1@mail.com"),
-            User::from(2, "user2", "user2@mail.com"),
-            User::from(3, "user3", "user3@mail.com"),
-            User::from(4, "user4", "user4@mail.com"),
-            User::from(5, "user5", "user5@mail.com"),
-            User::from(6, "user6", "user6@mail.com"),
-            User::from(7, "user7", "user7@mail.com"),
-            User::from(8, "user8", "user8@mail.com"),
-            User::from(9, "user9", "user9@mail.com"),
-            User::from(10, "user10", "user10@mail.com"),
-        ];
+        $connection = new Connection(Connection::MySQL, "localhost", "root", "root", "orm_test");
+        $compiler = new MySqlCompiler();
+
+        $query = Query::select("users u")
+                ->where("u.id", Operator::greater(1))
+                ->where("u.id", Operator::less(100))
+                ->orWhere(function (Criteria $c) {
+                    $c->where("u.id", 500);
+                })->limit(10)
+                ;
+
+        $sql = $compiler->compileQuery($query);
+
+        $items =  $connection->queryAll($sql, [":id" => 100]);
+
+        return array_map(
+            function ($item) {
+                return User::from(
+                    $item['id'],
+                    $item['first_name'],
+                    $item['last_name'],
+                    $item['email']
+                );
+            },
+            $items
+        );
     }
 }

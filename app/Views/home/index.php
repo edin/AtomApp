@@ -5,12 +5,14 @@
 </div>
 
 <h2>Some items</h2>
+
 <?php if ($items): ?>
 <table class="table">
     <?php foreach ($items as $item): ?>
     <tr>
         <td><?= $item->id ?></td>
-        <td><?= $item->username ?></td>
+        <td><?= $item->first_name ?></td>
+        <td><?= $item->last_name ?></td>
         <td><?= $item->email ?></td>
         <td>
             <div class="float-right">
