@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Atom\Container\Container;
-use Atom\Container\TypeFactory\TypeFactoryRegistry;
 use Atom\Container\TypeInfo;
+use Atom\Container\Container;
 use Atom\Dispatcher\RequestTypeFactory;
+use Atom\Container\TypeFactory\TypeFactoryRegistry;
 
 class TypeFactory
 {

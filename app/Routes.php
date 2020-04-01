@@ -3,20 +3,19 @@
 namespace App;
 
 use Atom\Router\Router;
+use Atom\Router\RouteBuilder;
 use App\Models\UserRepository;
+use App\Controllers\ApiController;
 use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AccountController;
-use App\Controllers\ApiController;
 use App\Controllers\ValidationController;
-use Atom\Router\RouteBuilder;
 
 class Routes
 {
     public function configure(Router $router)
     {
         $router->addGroup("/", function (Router $group) {
-
             $group->addMiddleware(LogMiddleware::class);
             $group->setController(HomeController::class);
 
@@ -25,7 +24,7 @@ class Routes
             $group->get("json", "json");
             $group->get("filter", "index");
             $group->get("validation", ValidationController::class, "index");
-            
+
             $group->attach(RouteBuilder::fromController(AccountController::class));
         });
 

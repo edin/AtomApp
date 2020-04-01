@@ -13,5 +13,6 @@ class Application extends \Atom\Application
         $this->use(ViewServices::class);
         $this->use(Routes::class);
         $this->use(TypeFactory::class);
+        $this->use(Services::class);
     }
 }
