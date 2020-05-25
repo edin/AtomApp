@@ -7,7 +7,7 @@ use Atom\Database\Mapping\Mapping;
 use Atom\Database\Mapping\DateTimeConverter;
 use Atom\Database\Mapping\CurrentDateTimeProvider;
 
-class Post
+final class Post
 {
     public int $Id;
     public string $Title;

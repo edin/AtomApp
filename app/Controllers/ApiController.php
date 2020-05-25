@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Repositories\UserRepository;
 use App\Models\User;
-use App\Models\UserRepository;
 
 final class ApiController
 {

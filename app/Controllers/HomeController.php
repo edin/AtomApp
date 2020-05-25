@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 use Atom\Router\Route;
 use Atom\View\ViewInfo;
-use App\Models\UserRepository;
 use App\Messages\FormPostMessage;
+use App\Models\Repositories\UserRepository;
 
 final class HomeController
 {

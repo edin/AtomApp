@@ -5,7 +5,7 @@ namespace App\Models;
 use Atom\Database\EntityCollection;
 use Atom\Database\Mapping\Mapping;
 
-class Category
+final class Category
 {
     public int $Id;
     public string $Title;
