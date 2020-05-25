@@ -17,7 +17,7 @@ final class ApiController
     /**
      * @Get("users")
      */
-    final public function onGet(UserRepository $repository)
+    final public function onGet()
     {
         return $this->repository->findAll();
     }
@@ -35,8 +35,7 @@ final class ApiController
      */
     final public function onPost(User $user)
     {
-        $this->repository->save($user);
-        return $user;
+        return $this->repository->save($user);
     }
 
     /**
@@ -45,16 +44,14 @@ final class ApiController
     final public function onPut(int $id = 0, User $user)
     {
         $user->Id = $id;
-        $this->repository->save($user);
-        return $user;
+        return $this->repository->save($user);
     }
 
     /**
      * @Delete("users/{id}")
      */
-    final public function onDelete(UserRepository $repository, int $id)
+    final public function onDelete(int $id)
     {
-        //TODO: Return response status
-        $repository->removeById($id);
+        $this->repository->removeById($id);
     }
 }

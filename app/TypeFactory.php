@@ -18,6 +18,10 @@ class TypeFactory
                 return $type->inNamespace("App\Messages");
             });
 
+            $registry->registerFactory(RequestTypeFactory::class, function (TypeInfo $type) {
+                return $type->inNamespace("App\Models");
+            });
+
             return $registry;
         })->withName("TypeFactory");
     }
