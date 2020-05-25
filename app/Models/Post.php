@@ -7,27 +7,31 @@ use Atom\Database\Mapping\Mapping;
 use Atom\Database\Mapping\DateTimeConverter;
 use Atom\Database\Mapping\CurrentDateTimeProvider;
 
-final class User
+class Post
 {
-    public int    $Id;
-    public string $FirstName;
-    public string $LastName;
-    public string $Email;
-    public string $PasswordHash;
+    public int $Id;
+    public string $Title;
+    public string $Content;
+
+    public int $CategoryId;
+    public Category $Category;
+
+    public int $AuthorId;
+    public User $Author;
+
     public DateTimeImmutable $CreatedAt;
     public DateTimeImmutable $UpdatedAt;
 
     public function getMapping(): Mapping
     {
         return Mapping::create(function (Mapping $map) {
-            $map->table("users");
-            //$map->setEntity(User::class);
-            //$map->setRepository(UserRepository::class)
+            $map->table("posts");
             $map->property("Id")->field("id")->primaryKey()->int();
-            $map->property("FirstName")->field("first_name")->string(50);
-            $map->property("LastName")->field("last_name")->string(50);
-            $map->property("Email")->field("email")->string(100);
-            $map->property("PasswordHash")->field("password_hash")->string(255)->excludeInSelect();
+            $map->property("Title")->field("title")->string(50);
+            $map->property("Content")->field("content")->string(50);
+
+            $map->property("CategoryId")->field("category_id")->int();
+            $map->property("AuthorId")->field("author_id")->int();
 
             $map->property("CreatedAt")->field("created_at")->date()
                 ->excludeInUpdate()

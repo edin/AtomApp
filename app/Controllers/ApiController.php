@@ -17,9 +17,14 @@ final class ApiController
     /**
      * @Get("users")
      */
-    final public function onGet()
+    final public function onGet(int $limit = 2)
     {
-        return $this->repository->findAll();
+        $query = $this->repository->query()->limit($limit);
+
+        return [
+            'limit' => $limit,
+            'data' => $query->findAll()
+        ];
     }
 
     /**
@@ -44,7 +49,8 @@ final class ApiController
     final public function onPut(int $id = 0, User $user)
     {
         $user->Id = $id;
-        return $this->repository->save($user);
+        $this->repository->save($user);
+        return $this->repository->findById($id);
     }
 
     /**
