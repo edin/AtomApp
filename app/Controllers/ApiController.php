@@ -2,15 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
 use App\Models\UserRepository;
 
 final class ApiController
 {
-    private $userRepository;
+    private $repository;
 
     public function __construct(UserRepository $userRepository)
     {
-        $this->userRepository = $userRepository;
+        $this->repository = $userRepository;
     }
 
     /**
@@ -18,46 +19,42 @@ final class ApiController
      */
     final public function onGet(UserRepository $repository)
     {
-        return $repository->findAll();
+        return $this->repository->findAll();
     }
 
     /**
      * @Get("users/{id}")
      */
-    final public function onGetById(UserRepository $repository, int $id)
+    final public function onGetById(int $id)
     {
-        return $repository->findById($id);
+        return $this->repository->findById($id);
     }
 
     /**
      * @Post("users")
      */
-    final public function onPost()
+    final public function onPost(User $user)
     {
-        return ["result" => "Executed onPost method."];
+        $this->repository->save($user);
+        return $user;
     }
 
     /**
      * @Put("users/{id}")
      */
-    final public function onPut(int $id = 0)
+    final public function onPut(int $id = 0, User $user)
     {
-        return ["result" => "Executed onPut method.", "id" => $id];
+        $user->Id = $id;
+        $this->repository->save($user);
+        return $user;
     }
 
     /**
-     * @Patch("users")
+     * @Delete("users/{id}")
      */
-    final public function onPatch()
+    final public function onDelete(UserRepository $repository, int $id)
     {
-        return ["result" => "Executed onPatch method."];
-    }
-
-    /**
-     * @Delete("users")
-     */
-    final public function onDelete()
-    {
-        return ["result" => "Executed onDelete method."];
+        //TODO: Return response status
+        $repository->removeById($id);
     }
 }

@@ -6,7 +6,7 @@ use Atom\Database\Mapping\Mapping;
 
 final class User
 {
-    public int $Id;
+    public int    $Id = 0;
     public string $FirstName;
     public string $LastName;
     public string $Email;
