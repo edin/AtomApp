@@ -22,6 +22,14 @@ final class ApiController
     }
 
     /**
+     * @Get("users/{id}")
+     */
+    final public function onGetById(UserRepository $repository, int $id)
+    {
+        return $repository->findById($id);
+    }
+
+    /**
      * @Post("users")
      */
     final public function onPost()
