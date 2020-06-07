@@ -1,9 +1,5 @@
 <?php $view->extend("layout"); ?>
 
-<div style="border:1px solid #333;padding:3px">
-    <pre><?php print_r($post) ?></pre>
-</div>
-
 <h2>Some items</h2>
 
 <?php if ($items) : ?>

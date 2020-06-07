@@ -7,7 +7,7 @@ use App\Models\User;
 
 final class ApiController
 {
-    private $repository;
+    private UserRepository $repository;
 
     public function __construct(UserRepository $userRepository)
     {

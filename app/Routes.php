@@ -4,7 +4,7 @@ namespace App;
 
 use Atom\Router\Router;
 use Atom\Router\RouteBuilder;
-use App\Models\UserRepository;
+use App\Models\Repositories\UserRepository;
 use App\Controllers\ApiController;
 use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;

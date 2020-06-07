@@ -3,16 +3,12 @@
 namespace App\Models\Repositories;
 
 use App\Models\User;
-use Atom\Database\Database;
 use Atom\Database\Repository;
 use Atom\Database\Query\Operator;
 
 final class UserRepository extends Repository
 {
-    public function __construct(Database $database)
-    {
-        parent::__construct($database, User::class);
-    }
+    protected string $entityType = User::class;
 
     public function findExampleAll()
     {

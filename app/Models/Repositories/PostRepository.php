@@ -9,8 +9,5 @@ use Atom\Database\Query\Operator;
 
 final class PostRepository extends Repository
 {
-    public function __construct(Database $database)
-    {
-        parent::__construct($database, Post::class);
-    }
+    protected string $entityType = Post::class;
 }

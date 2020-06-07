@@ -17,7 +17,7 @@ final class Post
     public Category $Category;
 
     public int $AuthorId;
-    public User $Author;
+    public ?User $Author;
 
     public DateTimeImmutable $CreatedAt;
     public DateTimeImmutable $UpdatedAt;
