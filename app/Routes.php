@@ -9,6 +9,7 @@ use App\Controllers\ApiController;
 use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AccountController;
+use App\Controllers\CategoryController;
 use App\Controllers\ValidationController;
 
 class Routes
@@ -26,6 +27,21 @@ class Routes
             $group->get("validation", ValidationController::class, "index");
 
             $group->attach(RouteBuilder::fromController(AccountController::class));
+
+            // Category Controller
+            $group->addGroup("/category", function (Router $group) {
+                $group->setController(CategoryController::class);
+                $group->get("",  "index");
+
+                $group->get("create", "create");
+                $group->post("create", "create");
+
+                $group->get("edit/{id}", "edit");
+                $group->post("edit/{id}", "edit");
+
+                $group->get("delete/{id}", "delete");
+                $group->post("delete/{id}", "delete");
+            });
         });
 
         $router->attachTo("/api", RouteBuilder::fromController(ApiController::class));
