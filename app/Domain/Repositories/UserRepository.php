@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Repositories;
+namespace App\Domain\Repositories;
 
-use App\Models\User;
+use App\Domain\Models\User;
 use Atom\Database\Repository;
 use Atom\Database\Query\Operator;
 

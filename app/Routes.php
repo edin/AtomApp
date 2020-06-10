@@ -4,7 +4,7 @@ namespace App;
 
 use Atom\Router\Router;
 use Atom\Router\RouteBuilder;
-use App\Models\Repositories\UserRepository;
+use App\Domain\Repositories\UserRepository;
 use App\Controllers\ApiController;
 use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
@@ -33,14 +33,9 @@ class Routes
                 $group->setController(CategoryController::class);
                 $group->get("",  "index");
 
-                $group->get("create", "create");
-                $group->post("create", "create");
-
-                $group->get("edit/{id}", "edit");
-                $group->post("edit/{id}", "edit");
-
-                $group->get("delete/{id}", "delete");
-                $group->post("delete/{id}", "delete");
+                $group->getOrPost("create", "create");
+                $group->getOrPost("edit/{id}", "edit");
+                $group->getOrPost("delete/{id}", "delete");
             });
         });
 

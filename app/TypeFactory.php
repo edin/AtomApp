@@ -19,7 +19,7 @@ class TypeFactory
             });
 
             $registry->registerFactory(RequestTypeFactory::class, function (TypeInfo $type) {
-                return $type->inNamespace("App\Models");
+                return $type->inNamespace("App\Domain\Models");
             });
 
             return $registry;

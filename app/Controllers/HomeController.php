@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Atom\Router\Route;
 use Atom\View\ViewInfo;
 use App\Messages\FormPostMessage;
-use App\Models\Repositories\UserRepository;
+use App\Domain\Repositories\UserRepository;
 
 final class HomeController
 {

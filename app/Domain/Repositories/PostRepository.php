@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Models\Repositories;
+namespace App\Domain\Repositories;
 
-use App\Models\Post;
-use Atom\Database\Database;
+use App\Domain\Models\Post;
 use Atom\Database\Repository;
-use Atom\Database\Query\Operator;
 
 final class PostRepository extends Repository
 {

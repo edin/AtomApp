@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Repositories;
+namespace App\Domain\Repositories;
 
-use App\Models\Comment;
+use App\Domain\Models\Comment;
 use Atom\Database\Repository;
 
 final class CommentRepository extends Repository

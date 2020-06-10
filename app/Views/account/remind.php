@@ -61,18 +61,12 @@
 
 <body class="text-center">
     <form class="form-signin">
-        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal">Reset password</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
+        <div class="mb-3">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Reset</button>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-
-        <a href="/public/remind" class="btn btn-default mt-4">Forgot password ?</a>
+        <a href="/public/login" class="btn btn-default mt-4">Login</a>
     </form>
 </body>

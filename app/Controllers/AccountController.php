@@ -15,10 +15,18 @@ final class AccountController
     }
 
     /**
-     * @Get("logout-route")
+     * @Get("logout")
      */
     final public function logout()
     {
         return new ViewInfo('account/logout');
+    }
+
+    /**
+     * @Get("remind")
+     */
+    final public function remind()
+    {
+        return new ViewInfo('account/remind');
     }
 }

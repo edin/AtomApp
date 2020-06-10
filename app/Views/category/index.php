@@ -1,41 +1,44 @@
 <?php $view->extend("layout"); ?>
 
-<div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-    <div class="lh-100">
+<div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">
+    <div class="title">
         <h6 class="mb-0 text-white lh-100">Category</h6>
     </div>
-
-    <div class="lh-100 float-right">
+    <div class="actions">
         <a href="/public/category/create" class="btn btn-sm btn-primary">Add</a>
     </div>
 </div>
+
 <table class="table table-sm">
     <thead class="thead-light">
         <tr>
-            <th scope="col"></th>
+            <th scope="col">Id</th>
             <th scope="col">Category</th>
-            <th scope="col">IsActive</th>
-            <th scope="col">Actions</th>
+            <th scope="col" width="120px" class="text-center">Active</th>
+            <th scope="col" width="160px" class="text-center">Actions</th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($models as $model) : ?>
             <tr>
-                <th scope="row"><?= $model->Id ?></th>
+                <th scope="row" width="60px"><?= $model->Id ?></th>
                 <td><?= $model->Title ?></td>
-                <td>
-                    <span class="badge p-2 badge-success">Yes</span>
-                    <span class="badge p-2 badge-light">No</span>
+                <td class="text-center">
+                    <?php if ($model->IsActive) : ?>
+                        <span class="badge p-2 badge-success">Yes</span>
+                    <?php else : ?>
+                        <span class="badge p-2 badge-light">No</span>
+                    <?php endif; ?>
                 </td>
-                <td>
-                    <div class="float-right">
-                        <button type="button" class="btn btn-sm btn-default">Edit</button>
-                        <button type="button" class="btn btn-sm btn-danger">Delete</button>
-                    </div>
+                <td class="text-right">
+                    <a href="/public/category/edit/<?= $model->Id ?>" class="btn btn-sm btn-default">Edit</a>
+                    <a href="/public/category/delete/<?= $model->Id ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 
-<?= $view->render("partial/pager", ["collection" => []]) ?>
+<?php
+//$view->render("partial/pager", ["collection" => []])
+?>

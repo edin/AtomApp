@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Models;
 
 use DateTimeImmutable;
 use Atom\Database\Mapping\Mapping;

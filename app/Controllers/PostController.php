@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Repositories\PostRepository;
+use App\Domain\Repositories\PostRepository;
 
 final class PostController
 {
