@@ -5,7 +5,7 @@
         <h6 class="mb-0 text-white lh-100">Category</h6>
     </div>
     <div class="actions">
-        <a href="/public/category/create" class="btn btn-sm btn-primary">Add</a>
+        <a href="/public/admin/category/create" class="btn btn-sm btn-primary">Add</a>
     </div>
 </div>
 
@@ -31,8 +31,8 @@
                     <?php endif; ?>
                 </td>
                 <td class="text-right">
-                    <a href="/public/category/edit/<?= $model->Id ?>" class="btn btn-sm btn-default">Edit</a>
-                    <a href="/public/category/delete/<?= $model->Id ?>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="/public/admin/category/edit/<?= $model->Id ?>" class="btn btn-sm btn-default">Edit</a>
+                    <a href="/public/admin/category/delete/<?= $model->Id ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
@@ -40,5 +40,5 @@
 </table>
 
 <?php
-//$view->render("partial/pager", ["collection" => []])
+echo $view->render("partial/pager", ["collection" => []])
 ?>

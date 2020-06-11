@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use Atom\View\ViewInfo;
 use App\Domain\Models\Category;
 use App\Domain\Repositories\CategoryRepository;
-use Atom\View\ViewInfo;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -24,11 +24,19 @@ final class CategoryController
         $this->response = $response;
     }
 
-    public function index()
+    public function index(int $page = 1, ?string $orderBy = null)
     {
-        //TODO: Aplly filters
+        $page = ($page > 0) ? $page : 1;
+        $size = 5;
+        $skip = ($page - 1) * $size;
+
+        $count = $this->repository->query()->getRowCount();
+        $query = $this->repository->query()->limit($size)->skip($skip);
+
         return new ViewInfo("category/index", [
-            "models" => $this->repository->findAll()
+            "models" => $query->findAll(),
+            "page" => $page,
+            "count" => $count
         ]);
     }
 
@@ -39,7 +47,7 @@ final class CategoryController
 
     public function returnToIndex()
     {
-        return $this->response->withHeader("Location", "/public/category")->withStatus(200);
+        return $this->response->withHeader("Location", "/public/admin/category")->withStatus(200);
     }
 
     public function create(Category $model)

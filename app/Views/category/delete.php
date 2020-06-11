@@ -6,7 +6,7 @@
             <h6 class="mb-0 text-white lh-100">Category</h6>
         </div>
         <div class="actions">
-            <a href="/public/category" class="btn btn-sm btn-primary">List</a>
+            <a href="/public/admin/category" class="btn btn-sm btn-primary">List</a>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
                 Item was not found
             </div>
             <div class="mt-3 form-actions">
-                <a href="/public/category" class="btn btn-danger">Back</a>
+                <a href="/public/admin/category" class="btn btn-danger">Back</a>
             </div>
         </div>
     <?php endif; ?>

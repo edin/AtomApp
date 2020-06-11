@@ -27,9 +27,12 @@ class Routes
             $group->get("validation", ValidationController::class, "index");
 
             $group->attach(RouteBuilder::fromController(AccountController::class));
+        });
 
-            // Category Controller
-            $group->addGroup("/category", function (Router $group) {
+        $router->addGroup("/admin", function (Router $group) {
+            $group->addMiddleware(LogMiddleware::class);
+
+            $group->addGroup("/admin/category", function (Router $group) {
                 $group->setController(CategoryController::class);
                 $group->get("",  "index");
 
@@ -38,6 +41,7 @@ class Routes
                 $group->getOrPost("delete/{id}", "delete");
             });
         });
+
 
         $router->attachTo("/api", RouteBuilder::fromController(ApiController::class));
 
