@@ -14,10 +14,9 @@ final class Post
     public string $Content;
 
     public int $CategoryId;
-    public Category $Category;
+    public ?Category $Category = null;
 
-    public int $AuthorId;
-    public ?User $Author;
+    public string $Author = "";
 
     public DateTimeImmutable $CreatedAt;
     public DateTimeImmutable $UpdatedAt;
@@ -31,7 +30,7 @@ final class Post
             $map->property("Content")->field("content")->string(50);
 
             $map->property("CategoryId")->field("category_id")->int();
-            $map->property("AuthorId")->field("author_id")->int();
+            $map->property("Author")->field("author")->string(100);
 
             $map->property("CreatedAt")->field("created_at")->date()
                 ->excludeInUpdate()

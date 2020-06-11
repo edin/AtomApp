@@ -15,7 +15,25 @@
 
         <div class="form-group">
             <label for="Category">Category</label>
-            <input type="text" name="Title" value="<?= @$model->Title ?>" class="form-control xis-invalid">
+            <input type="text" name="Title" id="Title" value="<?= $model->Title ?>" class="form-control xis-invalid">
+            <!--
+            <div class="invalid-feedback">
+                Title is missing
+            </div>
+            -->
+        </div>
+        <div class="form-group">
+            <label for="Description">Description</label>
+            <input type="text" name="Description" id="Description" value="<?= $model->Description ?>" class="form-control xis-invalid">
+            <!--
+            <div class="invalid-feedback">
+                Title is missing
+            </div>
+            -->
+        </div>
+        <div class="form-group">
+            <label for="ImageUrl">Image URL</label>
+            <input type="text" name="ImageUrl" id="ImageUrl" value="<?= $model->ImageUrl ?>" class="form-control xis-invalid">
             <!--
             <div class="invalid-feedback">
                 Title is missing

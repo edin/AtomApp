@@ -10,7 +10,7 @@ final class Category
     public ?int $Id = null;
     public string $Title = "";
     public bool $IsActive = false;
-    public string $Descripion = "";
+    public string $Description = "";
     public string $ImageUrl = "";
     public ?int $ParentId = null;
     public ?Category $Parent = null;
@@ -24,7 +24,7 @@ final class Category
             //$map->setRepository(UserRepository::class)
             $map->property("Id")->field("id")->primaryKey()->int();
             $map->property("Title")->field("title")->string(50);
-            $map->property("Descripion")->field("description")->string(50);
+            $map->property("Description")->field("description")->string(500);
             $map->property("ImageUrl")->field("image_url")->string(100);
             $map->property("ParentId")->field("parent_id")->int();
             $map->property("IsActive")->field("is_active")->int();

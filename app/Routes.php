@@ -10,6 +10,7 @@ use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AccountController;
 use App\Controllers\CategoryController;
+use App\Controllers\PostController;
 use App\Controllers\ValidationController;
 
 class Routes
@@ -34,6 +35,16 @@ class Routes
 
             $group->addGroup("/admin/category", function (Router $group) {
                 $group->setController(CategoryController::class);
+                $group->get("",  "index");
+
+                $group->getOrPost("create", "create");
+                $group->getOrPost("edit/{id}", "edit");
+                $group->getOrPost("delete/{id}", "delete");
+            });
+
+
+            $group->addGroup("/admin/post", function (Router $group) {
+                $group->setController(PostController::class);
                 $group->get("",  "index");
 
                 $group->getOrPost("create", "create");
