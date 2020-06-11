@@ -13,38 +13,10 @@
     <div class="p-2 rounded">
         <input type="hidden" name="Id" value="<?= $model->Id ?>">
 
-        <div class="form-group">
-            <label for="Category">Category</label>
-            <input type="text" name="Title" id="Title" value="<?= $model->Title ?>" class="form-control xis-invalid">
-            <!--
-            <div class="invalid-feedback">
-                Title is missing
-            </div>
-            -->
-        </div>
-        <div class="form-group">
-            <label for="Description">Description</label>
-            <input type="text" name="Description" id="Description" value="<?= $model->Description ?>" class="form-control xis-invalid">
-            <!--
-            <div class="invalid-feedback">
-                Title is missing
-            </div>
-            -->
-        </div>
-        <div class="form-group">
-            <label for="ImageUrl">Image URL</label>
-            <input type="text" name="ImageUrl" id="ImageUrl" value="<?= $model->ImageUrl ?>" class="form-control xis-invalid">
-            <!--
-            <div class="invalid-feedback">
-                Title is missing
-            </div>
-            -->
-        </div>
-        <div class="form-check">
-            <input type="hidden" name="IsActive" value="0" />
-            <input type="checkbox" class="form-check-input" name="IsActive" <?php if ($model->IsActive) : ?> checked <?php endif; ?> value="1" id="IsActive">
-            <label class="form-check-label" for="IsActive">Active</label>
-        </div>
+        <?= $view->render("partial/input", ["name" => "Title", "label" => "Category", "value" => $model->Title, "errorMessage" => null]) ?>
+        <?= $view->render("partial/input", ["name" => "Description", "value" => $model->Description, "errorMessage" => null]) ?>
+        <?= $view->render("partial/input", ["name" => "ImageUrl", "label" => "Image URL", "value" => $model->ImageUrl, "errorMessage" => null]) ?>
+        <?= $view->render("partial/checkbox", ["name" => "IsActive", "label" => "Active", "value" => $model->IsActive]) ?>
 
         <div class="mt-3 form-actions">
             <button type="submit" class="btn btn-primary">Save</button>

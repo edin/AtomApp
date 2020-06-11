@@ -5,7 +5,12 @@
         <h6 class="mb-0 text-white lh-100">Category</h6>
     </div>
     <div class="actions">
-        <a href="/public/admin/category/create" class="btn btn-sm btn-primary">Add</a>
+        <form class="form-inline" method="GET">
+            <div class="form-group mr-2">
+                <input type="text" class="form-control form-control-sm" name="filter" placeholder="Search...">
+            </div>
+            <a href="/public/admin/category/create" class="btn btn-sm btn-primary">Add</a>
+        </form>
     </div>
 </div>
 
@@ -13,7 +18,9 @@
     <thead class="thead-light">
         <tr>
             <th scope="col"></th>
-            <th scope="col">Category</th>
+            <th scope="col">
+                <a href="?orderBy=Category">Category <i class="fa fa-fw fa-sort"></i></a>
+            </th>
             <th scope="col" width="120px" class="text-center">Active</th>
             <th scope="col" width="160px" class="text-center">Actions</th>
         </tr>
@@ -31,11 +38,7 @@
                     <small><?= $model->Description ?></small>
                 </td>
                 <td class="text-center">
-                    <?php if ($model->IsActive) : ?>
-                        <span class="badge p-2 badge-success">Yes</span>
-                    <?php else : ?>
-                        <span class="badge p-2 badge-light">No</span>
-                    <?php endif; ?>
+                    <?= $view->render("partial/cell-checked", ["isActive" => $model->IsActive]) ?>
                 </td>
                 <td class="text-right">
                     <a href="/public/admin/category/edit/<?= $model->Id ?>" class="btn btn-sm btn-default">Edit</a>
@@ -46,6 +49,4 @@
     </tbody>
 </table>
 
-<?php
-echo $view->render("partial/pager", ["collection" => []])
-?>
+<?= $view->render("partial/pager", ["collection" => []]) ?>

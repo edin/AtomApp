@@ -27,7 +27,7 @@ final class CategoryController
     public function index(int $page = 1, ?string $orderBy = null)
     {
         $page = ($page > 0) ? $page : 1;
-        $size = 5;
+        $size = 10;
         $skip = ($page - 1) * $size;
 
         $count = $this->repository->query()->getRowCount();
