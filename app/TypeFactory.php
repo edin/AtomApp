@@ -3,26 +3,19 @@
 namespace App;
 
 use Atom\Container\TypeInfo;
-use Atom\Container\Container;
 use Atom\Dispatcher\RequestTypeFactory;
 use Atom\Container\TypeFactory\TypeFactoryRegistry;
 
 class TypeFactory
 {
-    public function configureServices(Container $container)
+    public function __construct(TypeFactoryRegistry $registry)
     {
-        $container->bind(TypeFactoryRegistry::class)->toFactory(function () {
-            $registry = new TypeFactoryRegistry();
+        $registry->register(RequestTypeFactory::class, function (TypeInfo $type) {
+            return $type->inNamespace("App\Messages");
+        });
 
-            $registry->registerFactory(RequestTypeFactory::class, function (TypeInfo $type) {
-                return $type->inNamespace("App\Messages");
-            });
-
-            $registry->registerFactory(RequestTypeFactory::class, function (TypeInfo $type) {
-                return $type->inNamespace("App\Domain\Models");
-            });
-
-            return $registry;
-        })->withName("TypeFactory");
+        $registry->register(RequestTypeFactory::class, function (TypeInfo $type) {
+            return $type->inNamespace("App\Domain\Models");
+        });
     }
 }

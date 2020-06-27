@@ -10,7 +10,7 @@ use Atom\Database\Interfaces\IDatabaseConnector;
 
 class Services
 {
-    public function configureServices(Container $container)
+    public function __construct(Container $container)
     {
         $container->bind(IConnection::class)->to(Connection::class);
         $container->bind(IDatabaseConnector::class)->toFactory(function () {
