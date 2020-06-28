@@ -9,8 +9,8 @@ use App\Controllers\ApiController;
 use App\Middlewares\LogMiddleware;
 use App\Controllers\HomeController;
 use App\Controllers\AccountController;
-use App\Controllers\CategoryController;
-use App\Controllers\PostController;
+use App\Controllers\Admin\CategoryController;
+use App\Controllers\Admin\PostController;
 use App\Controllers\ValidationController;
 
 class Routes

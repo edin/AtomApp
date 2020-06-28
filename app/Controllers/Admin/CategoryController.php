@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Admin;
 
 use Atom\View\ViewInfo;
 use App\Domain\Models\Category;
@@ -33,7 +33,7 @@ final class CategoryController
         $count = $this->repository->query()->getRowCount();
         $query = $this->repository->query()->limit($size)->skip($skip);
 
-        return new ViewInfo("category/index", [
+        return new ViewInfo("admin/category/index", [
             "models" => $query->findAll(),
             "page" => $page,
             "count" => $count
@@ -57,7 +57,7 @@ final class CategoryController
             return $this->returnToIndex();
         }
 
-        return new ViewInfo("category/edit", [
+        return new ViewInfo("admin/category/edit", [
             "model" => $model
         ]);
     }
@@ -71,7 +71,7 @@ final class CategoryController
             $model = $this->repository->findById($id);
         }
 
-        return new ViewInfo("category/edit", [
+        return new ViewInfo("admin/category/edit", [
             "model" => $model
         ]);
     }
@@ -85,7 +85,7 @@ final class CategoryController
 
         $model = $this->repository->findById($id);
 
-        return new ViewInfo("category/delete", [
+        return new ViewInfo("admin/category/delete", [
             "model" => $model
         ]);
     }
