@@ -2,6 +2,7 @@
 
 namespace App\Domain\Models;
 
+use App\Domain\Repositories\PostRepository;
 use DateTimeImmutable;
 use Atom\Database\Mapping\Mapping;
 use Atom\Database\Mapping\DateTimeConverter;
@@ -25,6 +26,8 @@ final class Post
     {
         return Mapping::create(function (Mapping $map) {
             $map->table("posts");
+            $map->setEntityClass(Post::class);
+            $map->setRepositoryClass(PostRepository::class);
             $map->property("Id")->field("id")->primaryKey()->int();
             $map->property("Title")->field("title")->string(50);
             $map->property("Content")->field("content")->string(50);

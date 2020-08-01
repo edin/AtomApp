@@ -21,8 +21,8 @@ final class User
     {
         return Mapping::create(function (Mapping $map) {
             $map->table("users");
-            //$map->setEntity(User::class);
-            //$map->setRepository(UserRepository::class)
+            $map->setEntityClass(User::class);
+            $map->setRepositoryClass(UserRepository::class);
             $map->property("Id")->field("id")->primaryKey()->int();
             $map->property("FirstName")->field("first_name")->string(50);
             $map->property("LastName")->field("last_name")->string(50);
