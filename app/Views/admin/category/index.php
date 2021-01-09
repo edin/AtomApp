@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($models as $model) : ?>
+        <?php foreach ($collection as $model) : ?>
             <tr>
                 <th scope="row" width="60px" class="text-center">
                     <?php if ($model->ImageUrl) : ?>
@@ -50,4 +50,7 @@
     </tbody>
 </table>
 
-<?= $view->render("partial/pager", ["collection" => []]) ?>
+<?= $view->render("partial/pager", [
+    "collection" => $collection,
+    "url" =>  $url->to("/admin/category?page={page}")
+]) ?>

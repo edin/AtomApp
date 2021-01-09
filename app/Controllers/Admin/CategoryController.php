@@ -7,6 +7,7 @@ use App\Domain\Models\Category;
 use App\Domain\Repositories\CategoryRepository;
 use App\Services\UrlService;
 use App\ViewModels\TableViewModel;
+use Atom\Collections\PagedCollection;
 use Atom\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,19 +37,11 @@ final class CategoryController
     {
         $this->viewModel->setPage($page);
         $this->viewModel->setOrder($orderBy);
-
-        $page = ($page > 0) ? $page : 1;
-        $size = 10;
-        $skip = ($page - 1) * $size;
-
-        $count = $this->repository->query()->getRowCount();
-        $query = $this->repository->query()->limit($size)->skip($skip);
+        $collection = $this->repository->query()->toPagedCollection($page, 10);
 
         return new ViewInfo("admin/category/index", [
             "model" => $this->viewModel,
-            "models" => $query->findAll(),
-            "page" => $page,
-            "count" => $count
+            "collection" => $collection
         ]);
     }
 
@@ -59,7 +52,9 @@ final class CategoryController
 
     public function returnToIndex()
     {
-        return $this->response->withHeader("Location", $this->url->to("/admin/category"))->withStatus(200);
+        return $this->response
+            ->withHeader("Location", $this->url->to("/admin/category"))
+            ->withStatus(200);
     }
 
     public function create(Category $model)
