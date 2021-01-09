@@ -12,26 +12,27 @@ use Atom\Database\Interfaces\IDatabaseConnector;
 
 class Services
 {
-    public function __construct(Container $container)
+    public function __construct(Container $di)
     {
-        $container->bind(IConnection::class)
+        $di->bind(IConnection::class)
             ->to(Connection::class);
 
-        $container->bind(IDatabaseConnector::class)
+        $di->bind(IDatabaseConnector::class)
             ->toFactory(function () {
                 return new MySqlConnector(
                     "localhost",
                     "root",
                     "root",
-                    "orm_test"
+                    "atom_framework"
                 );
             });
 
-        $container->bind("url")
-            ->to(UrlService::class)
+        $di->bind(UrlService::class)
+            ->toSelf()
+            ->withName("url")
             ->asShared();
 
-        $container->bind(PageViewModel::class)
+        $di->bind(PageViewModel::class)
             ->toSelf()
             ->withName("page")
             ->asShared();

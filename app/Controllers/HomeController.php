@@ -38,25 +38,21 @@ final class HomeController
     {
         return [
             new Item("Login View", $this->url->to("/login")),
-            new Item("Category Crud", $this->url->to("/admin/category")),
-            new Item("Api", $this->url->to("/api/users")),
+            new Item("Database Crud", $this->url->to("/admin/category")),
+            new Item("JSON Response", $this->url->to("/api/users")),
+            new Item("JSON Validation Result", $this->url->to("/validation")),
+            new Item("Router", $this->url->to("/router")),
+            new Item("Container Component Registry", $this->url->to("/container")),
         ];
     }
 
-    // final public function json(UserRepository $repository)
-    // {
-    //     return $repository->findAll();
-    // }
+    public function router()
+    {
+        return new ViewInfo('home/router');
+    }
 
-    // final public function item()
-    // {
-    //     $item = new \stdClass;
-    //     $item->title = "Item";
-    //     return new ViewInfo('home/item', ['item' => $item]);
-    // }
-
-    // final public function onGet(UserRepository $repository)
-    // {
-    //     return $repository->findAll();
-    // }
+    public function container()
+    {
+        return new ViewInfo('home/container');
+    }
 }

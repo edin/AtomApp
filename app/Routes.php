@@ -26,6 +26,9 @@ class Routes
             $group->get("item", "item");
             $group->get("json", "json");
             $group->get("filter", "index");
+            $group->get("router", "router");
+            $group->get("container", "container");
+
             $group->get("validation", ValidationController::class, "index");
 
             $group->attach(RouteBuilder::fromController(AccountController::class));
