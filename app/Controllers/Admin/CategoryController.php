@@ -5,7 +5,9 @@ namespace App\Controllers\Admin;
 use Atom\View\ViewInfo;
 use App\Domain\Models\Category;
 use App\Domain\Repositories\CategoryRepository;
+use App\Services\UrlService;
 use App\ViewModels\TableViewModel;
+use Atom\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -15,17 +17,19 @@ final class CategoryController
     private ServerRequestInterface $request;
     private ResponseInterface $response;
     private TableViewModel $viewModel;
+    private UrlService $url;
 
     public function __construct(
         CategoryRepository $repository,
         ServerRequestInterface $request,
-        ResponseInterface $response
+        ResponseInterface $response,
+        UrlService $url
     ) {
+        $this->url = $url;
         $this->repository = $repository;
         $this->request = $request;
         $this->response = $response;
         $this->viewModel = new TableViewModel();
-        //$this->viewModel->setViewPath("")
     }
 
     public function index(int $page = 1, ?string $orderBy = null, ?string $filterBy = null)
@@ -55,7 +59,7 @@ final class CategoryController
 
     public function returnToIndex()
     {
-        return $this->response->withHeader("Location", "/public/admin/category")->withStatus(200);
+        return $this->response->withHeader("Location", $this->url->to("/admin/category"))->withStatus(200);
     }
 
     public function create(Category $model)
@@ -90,7 +94,6 @@ final class CategoryController
             $this->repository->removeById($id);
             return $this->returnToIndex();
         }
-
         $model = $this->repository->findById($id);
 
         return new ViewInfo("admin/category/delete", [

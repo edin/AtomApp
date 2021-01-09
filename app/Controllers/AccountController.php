@@ -2,10 +2,17 @@
 
 namespace App\Controllers;
 
+use App\ViewModels\PageViewModel;
+use Atom\Container\Container;
 use Atom\View\ViewInfo;
 
 final class AccountController
 {
+    public function __construct(Container $container)
+    {
+        $container->page->containerClass = "center-verticaly";
+    }
+
     /**
      * @Get("login")
      */

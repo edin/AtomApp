@@ -1,4 +1,5 @@
 <?php $view->extend("layout"); ?>
+<?php $url = $container->url ?>
 
 <div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">
     <div class="title">
@@ -9,7 +10,7 @@
             <div class="form-group mr-2">
                 <input type="text" class="form-control form-control-sm" name="filter" placeholder="Search...">
             </div>
-            <a href="/public/admin/category/create" class="btn btn-sm btn-primary">Add</a>
+            <a href="<?= $url->to("/admin/category/create") ?>" class="btn btn-sm btn-primary">Add</a>
         </form>
     </div>
 </div>
@@ -41,8 +42,8 @@
                     <?= $view->render("partial/cell-checked", ["isActive" => $model->IsActive]) ?>
                 </td>
                 <td class="text-right">
-                    <a href="/public/admin/category/edit/<?= $model->Id ?>" class="btn btn-sm btn-default">Edit</a>
-                    <a href="/public/admin/category/delete/<?= $model->Id ?>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="<?= $url->to("/admin/category/edit/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-default">Edit</a>
+                    <a href="<?= $url->to("/admin/category/delete/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>

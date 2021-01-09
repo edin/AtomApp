@@ -12,6 +12,7 @@ use App\Controllers\AccountController;
 use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\PostController;
 use App\Controllers\ValidationController;
+use App\Controllers\Link\LinkController;
 
 class Routes
 {
@@ -55,6 +56,7 @@ class Routes
 
 
         $router->attachTo("/api", RouteBuilder::fromController(ApiController::class));
+        $router->attachTo("/", RouteBuilder::fromController(LinkController::class));
 
         $router->get("/api/users-all", function (UserRepository $users) {
             return $users->findAll();

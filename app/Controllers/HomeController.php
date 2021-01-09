@@ -5,40 +5,58 @@ namespace App\Controllers;
 use Atom\Router\Route;
 use Atom\View\ViewInfo;
 use App\Messages\FormPostMessage;
-use App\Domain\Repositories\UserRepository;
+use App\Services\UrlService;
+
+class Item
+{
+    public $title = "";
+    public $url = "";
+    public function __construct($title, $url)
+    {
+        $this->title = $title;
+        $this->url = $url;
+    }
+}
 
 final class HomeController
 {
-    private $userRepository;
+    private UrlService $url;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UrlService $url)
     {
-        $this->userRepository = $userRepository;
+        $this->url = $url;
     }
 
-    final public function index($id = 0, FormPostMessage $post, Route $route)
+    public function index(FormPostMessage $post, Route $route, $id = 0)
     {
         return new ViewInfo('home/index', [
-            'items' => $this->userRepository->findAll(),
-            'post' => $post,
-            'route' => $route
+            "items" => $this->getItems()
         ]);
     }
 
-    final public function json(UserRepository $repository)
+    public function getItems()
     {
-        return $repository->findAll();
+        return [
+            new Item("Login View", $this->url->to("/login")),
+            new Item("Category Crud", $this->url->to("/admin/category")),
+            new Item("Api", $this->url->to("/api/users")),
+        ];
     }
 
-    final public function item()
-    {
-        $item = new \stdClass;
-        $item->title = "Item";
-        return new ViewInfo('home/item', ['item' => $item]);
-    }
+    // final public function json(UserRepository $repository)
+    // {
+    //     return $repository->findAll();
+    // }
 
-    final public function onGet(UserRepository $repository)
-    {
-        return $repository->findAll();
-    }
+    // final public function item()
+    // {
+    //     $item = new \stdClass;
+    //     $item->title = "Item";
+    //     return new ViewInfo('home/item', ['item' => $item]);
+    // }
+
+    // final public function onGet(UserRepository $repository)
+    // {
+    //     return $repository->findAll();
+    // }
 }

@@ -46,7 +46,7 @@ final class ApiController
     /**
      * @Put("users/{id}")
      */
-    final public function onPut(int $id = 0, User $user)
+    final public function onPut(User $user, int $id = 0)
     {
         $user->Id = $id;
         $this->repository->save($user);
