@@ -43,6 +43,7 @@ final class HomeController
             new Item("JSON Validation Result", $this->url->to("/validation")),
             new Item("Router", $this->url->to("/router")),
             new Item("Container Component Registry", $this->url->to("/container")),
+            new Item("Model Mapping", $this->url->to("/model")),
         ];
     }
 
@@ -54,5 +55,10 @@ final class HomeController
     public function container()
     {
         return new ViewInfo('home/container');
+    }
+
+    public function model()
+    {
+        return new ViewInfo('home/model');
     }
 }

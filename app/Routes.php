@@ -28,6 +28,7 @@ class Routes
             $group->get("filter", "index");
             $group->get("router", "router");
             $group->get("container", "container");
+            $group->get("model", "model");
 
             $group->get("validation", ValidationController::class, "index");
 
