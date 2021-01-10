@@ -9,17 +9,13 @@
     "minimum-stability": "dev",
     "repositories": [
         {
-            "type": "path",
-            "url": "../Atom"
-        },
-        {
             "type": "git",
             "url": "https://github.com/edin/Atom.git"
         }
     ],
     "require": {
         "php": "^7.1.0",
-        "atom/framework": "dev-develop"
+        "atom/framework": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "^2.3"

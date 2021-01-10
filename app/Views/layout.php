@@ -19,7 +19,7 @@
 </head>
 
 <body class="<?= $container->page->containerClass ?>">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: purple;">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #3f51b5;">
         <a class="navbar-brand" href="<?= $container->url->to("/") ?>">Atom Framework</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

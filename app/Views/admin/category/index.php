@@ -18,7 +18,7 @@
 <table class="table table-sm">
     <thead class="thead-light">
         <tr>
-            <th scope="col"></th>
+            <!-- <th scope="col"></th> -->
             <th scope="col">
                 <a href="?orderBy=Category">Category <i class="fa fa-fw fa-sort"></i></a>
             </th>
@@ -29,20 +29,22 @@
     <tbody>
         <?php foreach ($collection as $model) : ?>
             <tr>
+                <?php /**
                 <th scope="row" width="60px" class="text-center">
                     <?php if ($model->ImageUrl) : ?>
                         <img src="<?= $model->ImageUrl ?>" width="40px" />
                     <?php endif; ?>
                 </th>
+                 */ ?>
                 <td>
                     <b><?= $model->Title ?></b><br />
                     <small><?= $model->Description ?></small>
                 </td>
-                <td class="text-center">
+                <td class="text-center align-middle">
                     <?= $view->render("partial/cell-checked", ["isActive" => $model->IsActive]) ?>
                 </td>
-                <td class="text-right">
-                    <a href="<?= $url->to("/admin/category/edit/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-default">Edit</a>
+                <td class="text-right align-middle">
+                    <a href="<?= $url->to("/admin/category/edit/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-primary">Edit</a>
                     <a href="<?= $url->to("/admin/category/delete/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
