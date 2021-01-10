@@ -13,15 +13,21 @@ $router = $container->Router;
         <tr>
             <th>Method</th>
             <th>Path</th>
+            <th>Middlewares</th>
             <th>Controller</th>
             <th>Method Name</th>
         </tr>
         <?php foreach ($router->getAllRoutes() as $route) : ?>
             <tr>
-                <td><?= $route->getMethodList() ?></td>
-                <td><?= $route->getPath() ?></td>
-                <td><?= $route->getController() ?></td>
-                <td><?= $route->getMethodName() ?></td>
+                <td class="align-middle"><?= $route->getMethodList() ?></td>
+                <td class="align-middle"><?= $route->getPath() ?></td>
+                <td class="align-middle">
+                    <?php foreach ($route->getMiddlewares() as $m) : ?>
+                        <span class="small"><?= is_object($m) ? get_class($m) : $m ?></span> <br />
+                    <?php endforeach; ?>
+                </td>
+                <td class="align-middle"><?= $route->getController() ?></td>
+                <td class="align-middle"><?= $route->getMethodName() ?></td>
             </tr>
         <?php endforeach; ?>
     </table>

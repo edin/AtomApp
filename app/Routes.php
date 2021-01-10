@@ -13,6 +13,7 @@ use App\Controllers\Admin\CategoryController;
 use App\Controllers\Admin\PostController;
 use App\Controllers\ValidationController;
 use App\Controllers\Link\LinkController;
+use App\Middlewares\AuthMiddleware;
 
 class Routes
 {
@@ -20,6 +21,8 @@ class Routes
     {
         $router->addGroup("/", function (Router $group) {
             $group->addMiddleware(LogMiddleware::class);
+            $group->addMiddleware(AuthMiddleware::class);
+
             $group->setController(HomeController::class);
 
             $group->get("", "index")->withName("home");
