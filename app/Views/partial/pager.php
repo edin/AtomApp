@@ -22,11 +22,13 @@ $end = min($totalPages, $start + 5);
 
             <?php for ($page = $start; $page <= $end; $page++) : ?>
                 <?php $pageUrl = strtr($url, ["{page}" => $page]) ?>
-                <li class="page-item"><a class="page-link" href="<?= $pageUrl ?>"><?= $page ?></a></li>
+                <li class="page-item <?= $page == $currentPage ? 'active' : '' ?>">
+                    <a class="page-link" href="<?= $pageUrl ?>"><?= $page ?></a>
+                </li>
             <?php endfor; ?>
 
             <?php if ($collection->hasNext()) : ?>
-                <?php $pageUrl = strtr($url, ["{page}" => $page]) ?>
+                <?php $pageUrl = strtr($url, ["{page}" => $currentPage + 1]) ?>
                 <li class="page-item"><a class="page-link" href="<?= $pageUrl ?>">Next</a></li>
             <?php endif; ?>
         </ul>
