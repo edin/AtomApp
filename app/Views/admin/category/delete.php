@@ -1,5 +1,6 @@
 <?php $view->extend("layout"); ?>
 <?php $url = $container->url ?>
+<?php $model = $model->model ?>
 
 <form method="post" class="my-3 shadow-sm">
     <div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">

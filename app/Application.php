@@ -9,8 +9,8 @@ class Application extends \Atom\Application
 {
     public function configure()
     {
-        $this->use(DispatcherServices::class);
-        $this->use(ViewServices::class);
+        // $this->use(DispatcherServices::class);
+        // $this->use(ViewServices::class);
         $this->use(Routes::class);
         $this->use(TypeFactory::class);
         $this->use(Services::class);

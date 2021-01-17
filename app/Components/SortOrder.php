@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Componenets;
+namespace App\Components;
 
 final class SortOrder
 {

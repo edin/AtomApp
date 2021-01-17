@@ -2,21 +2,20 @@
 
 namespace App\Controllers\Admin;
 
-use Atom\View\ViewInfo;
+use App\Components\TableViewModel;
 use App\Domain\Models\Category;
 use App\Domain\Repositories\CategoryRepository;
-use App\Services\UrlService;
-use App\ViewModels\TableViewModel;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Services\UrlService;
 
 final class CategoryController
 {
     private CategoryRepository $repository;
     private ServerRequestInterface $request;
     private ResponseInterface $response;
-    private TableViewModel $viewModel;
     private UrlService $url;
+    private TableViewModel $viewModel;
 
     public function __construct(
         CategoryRepository $repository,
@@ -28,7 +27,7 @@ final class CategoryController
         $this->repository = $repository;
         $this->request = $request;
         $this->response = $response;
-        $this->viewModel = new TableViewModel($repository);
+        $this->viewModel = new TableViewModel($request, $response, $url, $repository, "admin/category");
     }
 
     public function index(int $page = 1, ?string $orderBy = null, ?string $filterBy = null)
@@ -36,72 +35,21 @@ final class CategoryController
         $this->viewModel->setPage($page);
         $this->viewModel->setOrder($orderBy);
         $this->viewModel->setFilterBy($filterBy);
-        $collection = $this->repository->query()->toPagedCollection($page, 10);
-
-        return new ViewInfo("admin/category/index", [
-            "model" => $this->viewModel,
-            "collection" => $collection
-        ]);
-
-        //TODO: Refactor to something like
-        //return $this->viewModel->listView();
-    }
-
-    public function isPost()
-    {
-        return ($this->request->getMethod() == "POST");
-    }
-
-    public function returnToIndex()
-    {
-        return $this->response
-            ->withHeader("Location", $this->url->to("/admin/category"))
-            ->withStatus(200);
+        return $this->viewModel->index();
     }
 
     public function create(Category $model)
     {
-        if ($this->isPost()) {
-            $this->repository->save($model);
-            return $this->returnToIndex();
-        }
-
-        return new ViewInfo("admin/category/edit", [
-            "model" => $model
-        ]);
-        //TODO: Refactor to something like
-        //return $this->viewModel->createView();
+        return $this->viewModel->create($model);
     }
 
     public function edit(int $id, Category $model)
     {
-        if ($this->isPost()) {
-            $this->repository->save($model);
-            return $this->returnToIndex();
-        } else {
-            $model = $this->repository->findById($id);
-        }
-
-        return new ViewInfo("admin/category/edit", [
-            "model" => $model
-        ]);
-        //TODO: Refactor to something like
-        //return $this->viewModel->editView();
+        return $this->viewModel->edit($id, $model);
     }
 
     public function delete(int $id)
     {
-        if ($this->isPost()) {
-            $this->repository->removeById($id);
-            return $this->returnToIndex();
-        }
-        $model = $this->repository->findById($id);
-
-        return new ViewInfo("admin/category/delete", [
-            "model" => $model
-        ]);
-
-        //TODO: Refactor to something like
-        //return $this->viewModel->deleteView();
+        return $this->viewModel->delete($id);
     }
 }
