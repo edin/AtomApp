@@ -21,18 +21,19 @@ final class CategoryController
         CategoryRepository $repository,
         ServerRequestInterface $request,
         ResponseInterface $response,
-        UrlService $url
+        UrlService $url,
+        int $page = 1
     ) {
         $this->url = $url;
         $this->repository = $repository;
         $this->request = $request;
         $this->response = $response;
         $this->viewModel = new TableViewModel($request, $response, $url, $repository, "admin/category");
+        $this->viewModel->setPage($page);
     }
 
-    public function index(int $page = 1, ?string $orderBy = null, ?string $filterBy = null)
+    public function index(?string $orderBy = null, ?string $filterBy = null)
     {
-        $this->viewModel->setPage($page);
         $this->viewModel->setOrder($orderBy);
         $this->viewModel->setFilterBy($filterBy);
         return $this->viewModel->index();
