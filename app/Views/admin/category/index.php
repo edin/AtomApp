@@ -30,7 +30,7 @@
             <tr>
                 <td>
                     <b><?= $model->Title ?></b><br />
-                    <small><?= $model->Description ?></small>
+                    <small><?= $model->Description ?>&nbsp;</small>
                 </td>
                 <td class="text-center align-middle">
                     <?= $view->render("partial/cell-checked", ["isActive" => $model->IsActive]) ?>

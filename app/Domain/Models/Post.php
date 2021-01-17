@@ -16,7 +16,6 @@ final class Post
 
     public int $CategoryId;
     public ?Category $Category = null;
-
     public string $Author = "";
 
     public DateTimeImmutable $CreatedAt;

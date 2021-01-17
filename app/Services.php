@@ -27,6 +27,17 @@ class Services
                 );
             });
 
+        // or the same using constructor arguments
+        // $di->bind(IDatabaseConnector::class)
+        //     ->to(MySqlConnector::class)->withConstructorArguments([
+        //         'host' => "localhost",
+        //         'user' => "root",
+        //         'password' => "root",
+        //         'database' => "atom_framework",
+        //         'port' => null,
+        //         'attributes' => []
+        //     ]);
+
         $di->bind(UrlService::class)
             ->toSelf()
             ->withName("url")
