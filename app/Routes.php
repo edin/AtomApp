@@ -22,19 +22,13 @@ class Routes
         $router->addGroup("/", function (Router $group) {
             $group->addMiddleware(LogMiddleware::class);
             $group->addMiddleware(AuthMiddleware::class);
-
             $group->setController(HomeController::class);
 
-            $group->get("", "index")->withName("home");
-            $group->get("item", "item");
-            $group->get("json", "json");
-            $group->get("filter", "index");
-            $group->get("router", "router");
-            $group->get("container", "container");
-            $group->get("model", "model");
-
-            $group->get("validation", ValidationController::class, "index");
-
+            $group->get("", "index");
+            $group->get("router");
+            $group->get("container");
+            $group->get("model");
+            $group->get("validation", [ValidationController::class, "index"]);
             $group->attach(RouteBuilder::fromController(AccountController::class));
         });
 
@@ -44,29 +38,22 @@ class Routes
             $group->addGroup("/admin/category", function (Router $group) {
                 $group->setController(CategoryController::class);
                 $group->get("",  "index");
-
-                $group->getOrPost("create", "create");
-                $group->getOrPost("edit/{id}", "edit");
-                $group->getOrPost("delete/{id}", "delete");
-            });
-
-
-            $group->addGroup("/admin/post", function (Router $group) {
-                $group->setController(PostController::class);
-                $group->get("",  "index");
-
-                $group->getOrPost("create", "create");
+                $group->getOrPost("create");
                 $group->getOrPost("edit/{id}", "edit");
                 $group->getOrPost("delete/{id}", "delete");
             });
         });
 
-
-        $router->attachTo("/api", RouteBuilder::fromController(ApiController::class));
-        $router->attachTo("/", RouteBuilder::fromController(LinkController::class));
+        $this->attach($router, "/api", ApiController::class);
+        $this->attach($router, "/", LinkController::class);
 
         $router->get("/api/users-all", function (UserRepository $users) {
             return $users->findAll();
         });
+    }
+
+    private function attach($router, $path, $controller)
+    {
+        $router->attachTo($path,  RouteBuilder::fromController($controller));
     }
 }
