@@ -1,30 +1,6 @@
 <?php
 
-namespace App\ViewModels;
-
-final class SortOrder
-{
-    public string $fieldName = "";
-    public string $direction = "asc";
-}
-
-final class Field
-{
-    public string $fieldName;
-    public string $title;
-    public bool   $sortable = false;
-    public bool   $filterable = false;
-}
-
-final class FieldCollection
-{
-    private array $fields = [];
-
-    public function add(Field $field): void
-    {
-        $this->fields[] = $field;
-    }
-}
+namespace App\Componenets;
 
 final class SortCollection
 {
@@ -73,48 +49,5 @@ final class SortCollection
             return $this->order[$fieldName]->direction;
         }
         return "";
-    }
-}
-
-final class TableViewModel
-{
-    private int $page = 1;
-
-    public function addColumn($column): void
-    {
-        $this->columns[] = $column;
-    }
-
-    public function setPage(int $page)
-    {
-        $this->page = $page;
-    }
-
-    public function getPage(): int
-    {
-        return $this->page;
-    }
-
-    public function setOrder(?string $orderBy)
-    {
-    }
-
-    public function getOrder()
-    {
-        return "";
-    }
-
-    public function setFilterBy(?string $filterBy)
-    {
-    }
-
-    public function getFilterBy()
-    {
-        return "";
-    }
-
-    public function items(): array
-    {
-        return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     }
 }

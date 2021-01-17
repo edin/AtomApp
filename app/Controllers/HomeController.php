@@ -6,17 +6,7 @@ use Atom\Router\Route;
 use Atom\View\ViewInfo;
 use App\Messages\FormPostMessage;
 use App\Services\UrlService;
-
-class Item
-{
-    public $title = "";
-    public $url = "";
-    public function __construct($title, $url)
-    {
-        $this->title = $title;
-        $this->url = $url;
-    }
-}
+use App\ViewModels\Item;
 
 final class HomeController
 {

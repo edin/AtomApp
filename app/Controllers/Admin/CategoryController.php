@@ -7,8 +7,6 @@ use App\Domain\Models\Category;
 use App\Domain\Repositories\CategoryRepository;
 use App\Services\UrlService;
 use App\ViewModels\TableViewModel;
-use Atom\Collections\PagedCollection;
-use Atom\Container\Container;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -30,19 +28,23 @@ final class CategoryController
         $this->repository = $repository;
         $this->request = $request;
         $this->response = $response;
-        $this->viewModel = new TableViewModel();
+        $this->viewModel = new TableViewModel($repository);
     }
 
     public function index(int $page = 1, ?string $orderBy = null, ?string $filterBy = null)
     {
         $this->viewModel->setPage($page);
         $this->viewModel->setOrder($orderBy);
+        $this->viewModel->setFilterBy($filterBy);
         $collection = $this->repository->query()->toPagedCollection($page, 10);
 
         return new ViewInfo("admin/category/index", [
             "model" => $this->viewModel,
             "collection" => $collection
         ]);
+
+        //TODO: Refactor to something like
+        //return $this->viewModel->listView();
     }
 
     public function isPost()
@@ -67,6 +69,8 @@ final class CategoryController
         return new ViewInfo("admin/category/edit", [
             "model" => $model
         ]);
+        //TODO: Refactor to something like
+        //return $this->viewModel->createView();
     }
 
     public function edit(int $id, Category $model)
@@ -81,6 +85,8 @@ final class CategoryController
         return new ViewInfo("admin/category/edit", [
             "model" => $model
         ]);
+        //TODO: Refactor to something like
+        //return $this->viewModel->editView();
     }
 
     public function delete(int $id)
@@ -94,5 +100,8 @@ final class CategoryController
         return new ViewInfo("admin/category/delete", [
             "model" => $model
         ]);
+
+        //TODO: Refactor to something like
+        //return $this->viewModel->deleteView();
     }
 }

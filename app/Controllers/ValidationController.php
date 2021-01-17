@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Atom\Validation\Validation;
 
-class Customer
+final class Customer
 {
     public $firstName;
     public $lastName;
@@ -13,7 +13,7 @@ class Customer
     public $phones;
 }
 
-class Address
+final class Address
 {
     public $city;
     public $street;
