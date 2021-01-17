@@ -13,6 +13,7 @@ final class TableViewModel
 {
     private int $page = 1;
     private string $viewPath;
+    private string $baseUrl;
     private ?string $order = null;
     private ?string $filterBy = null;
     private Repository $repository;
@@ -35,6 +36,7 @@ final class TableViewModel
         $this->url = $url;
         $this->repository = $repository;
         $this->viewPath = $viewPath;
+        $this->baseUrl = $viewPath;
     }
 
     public function returnToIndex()
@@ -133,5 +135,35 @@ final class TableViewModel
             "model" => $this,
             "collection" => $collection
         ]);
+    }
+
+    public function getTitle()
+    {
+        return "Title";
+    }
+
+    public function getModelTitle()
+    {
+        return "Model Title";
+    }
+
+    public function getIndexUrl()
+    {
+        return $this->url->to("{$this->viewPath}");
+    }
+
+    public function getCreateUrl()
+    {
+        return $this->url->to("{$this->viewPath}/create");
+    }
+
+    public function getEditUrl($id)
+    {
+        return $this->url->to("{$this->viewPath}/edit/{id}", ["id" => $id]);
+    }
+
+    public function getDeleteUrl($id)
+    {
+        return $this->url->to("{$this->viewPath}/delete/{id}", ["id" => $id]);
     }
 }

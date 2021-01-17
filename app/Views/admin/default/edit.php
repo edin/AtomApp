@@ -1,18 +1,17 @@
 <?php $view->extend("layout"); ?>
-<?php $url = $container->url ?>
-<?php $model = $model->model ?>
 
-<form method="post" action="<?= $url->to("/admin/category/create") ?>" class="my-3 shadow-sm">
+<form method="post" action="<?= $model->getCreateUrl() ?>" class="my-3 shadow-sm">
     <div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">
         <div class="title">
-            <h6 class="mb-0 text-white lh-100">Category</h6>
+            <h6 class="mb-0 text-white lh-100"><?= $model->getTitle() ?></h6>
         </div>
         <div class="actions">
-            <a href="<?= $url->to("/admin/category") ?>" class="btn btn-sm btn-primary">List</a>
+            <a href="<?= $model->getIndexUrl() ?>" class="btn btn-sm btn-primary">List</a>
         </div>
     </div>
 
     <div class="p-2 rounded">
+        <!-- TODO: Generate Form -->
         <input type="hidden" name="Id" value="<?= $model->Id ?>">
 
         <?= $view->render("partial/input", ["name" => "Title", "label" => "Category", "value" => $model->Title, "errorMessage" => null]) ?>

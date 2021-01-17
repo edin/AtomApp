@@ -1,21 +1,19 @@
 <?php $view->extend("layout"); ?>
-<?php $url = $container->url ?>
-<?php $model = $model->model ?>
 
 <form method="post" class="my-3 shadow-sm">
     <div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">
         <div class="title">
-            <h6 class="mb-0 text-white lh-100">Category</h6>
+            <h6 class="mb-0 text-white lh-100"><?= $model->getTitle() ?></h6>
         </div>
         <div class="actions">
-            <a href="<?= $url->to("/admin/category") ?>" class="btn btn-sm btn-primary">List</a>
+            <a href="<?= $model->getIndexUrl() ?>" class="btn btn-sm btn-primary">List</a>
         </div>
     </div>
 
     <?php if ($model) : ?>
         <div class="p-2 rounded">
             <div class="form-group">
-                Please confirm that you want to delete <b><?= $model->Title ?></b> category.
+                Please confirm that you want to delete <b><?= $model->getModelTitle() ?></b> category.
             </div>
             <div class="mt-3 form-actions">
                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -27,7 +25,7 @@
                 Item was not found
             </div>
             <div class="mt-3 form-actions">
-                <a href="<?= $url->to("/admin/category") ?>" class="btn btn-danger">Back</a>
+                <a href="<?= $model->getIndexUrl() ?>" class="btn btn-danger">Back</a>
             </div>
         </div>
     <?php endif; ?>

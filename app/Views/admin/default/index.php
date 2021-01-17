@@ -1,16 +1,15 @@
 <?php $view->extend("layout"); ?>
-<?php $url = $container->url ?>
 
 <div class="d-flex justify-content-between p-3 my-3 align-items-center text-white-50 bg-purple rounded shadow-sm">
     <div class="title">
-        <h6 class="mb-0 text-white lh-100">Category</h6>
+        <h6 class="mb-0 text-white lh-100"><?= $model->getTitle() ?></h6>
     </div>
     <div class="actions">
         <form class="form-inline" method="GET">
             <div class="form-group mr-2">
                 <input type="text" class="form-control form-control-sm" name="filter" placeholder="Search...">
             </div>
-            <a href="<?= $url->to("/admin/category/create") ?>" class="btn btn-sm btn-primary">Add</a>
+            <a href="<?= $model->getCreateUrl() ?>" class="btn btn-sm btn-primary">Add</a>
         </form>
     </div>
 </div>
@@ -18,9 +17,8 @@
 <table class="table table-sm">
     <thead class="thead-light">
         <tr>
-            <th scope="col">
-                <a href="?orderBy=Category">Category <i class="fa fa-fw fa-sort"></i></a>
-            </th>
+            <!-- <a href="?orderBy=Category">Category <i class="fa fa-fw fa-sort"></i></a> -->
+            <th scope="col">Category</th>
             <th scope="col" width="120px" class="text-center">Active</th>
             <th scope="col" width="160px" class="text-center">Actions</th>
         </tr>
@@ -36,8 +34,8 @@
                     <?= $view->render("partial/cell-checked", ["isActive" => $model->IsActive]) ?>
                 </td>
                 <td class="text-right align-middle">
-                    <a href="<?= $url->to("/admin/category/edit/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-primary">Edit</a>
-                    <a href="<?= $url->to("/admin/category/delete/{id}", ["id" => $model->Id]) ?>" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="<?= $model->getEditUrl($model->Id) ?>" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="<?= $model->getDeleteUrl($model->Id) ?>" class="btn btn-sm btn-danger">Delete</a>
                 </td>
             </tr>
         <?php endforeach; ?>
